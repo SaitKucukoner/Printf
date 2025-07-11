@@ -10,14 +10,8 @@ static void ft_format_conversion(const char *format, int *counter, va_list args)
     {
         /* %p The void * pointer argument has to be printed in hexadecimal format. */
     }
-    else if (*format == 'd')
-    {
-        /* %d Prints a decimal (base 10) number. */
-    }
-    else if (*format == 'i')
-    {
-        /* %i Prints an integer in base 10. */
-    }
+    else if (*format == 'd' || *format == 'i')
+        ft_putnbr(va_arg(args, int), counter); /* %d Prints a decimal (base 10) number. */ /// /* %i Prints an integer in base 10. */
     else if (*format == 'u')
     {
         /* %u Prints an unsigned decimal (base 10) number. */
@@ -30,10 +24,7 @@ static void ft_format_conversion(const char *format, int *counter, va_list args)
     {
         /* %X Prints a number in hexadecimal (base 16) uppercase format. */
     }
-    else if (*format == '%')
-    {
-        /* %% Prints a percent sign */
-    }
+    
 }
 #include <stdio.h>
 
@@ -46,14 +37,20 @@ int ft_printf(const char *format, ...)
     counter = 0;
     i = 0;
     va_start(args, format);
-
     while (format[i])
     {
         if (format[i] == '%')
         {
-            ft_format_conversion(&format[i + 1], &counter, args);
+            if (format[i + 1] == '%')
+                counter += write(1, "%", 1);
+            else
+                ft_format_conversion(&format[i + 1], &counter, args);
+            i++;
         }
+        else
+            counter += write(1, &format[i], 1);
         i++;
     }
+    va_end(args);
     printf("\n%d\n", counter);
 }

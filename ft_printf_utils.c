@@ -18,3 +18,30 @@ void ft_putstr(char *str, int *counter)
         i++;
     }
 }
+void ft_putnbr(int number, int *counter)
+{
+    char result;
+
+    if (number == -2147483648)
+    {
+        write(1, "-2147483648", 11);
+        *counter += 11;
+    }
+    else if (number < 0)
+    {
+        write(1, "-", 1);
+        *counter += 1;
+        ft_putnbr(-number, counter);
+    }
+    else if (number > 9)
+    {
+        ft_putnbr((number / 10), counter); // 155 15  155
+        ft_putnbr((number % 10), counter);
+    }
+    else
+    {
+        result = number + '0';
+        write(1, &result, 1);
+        *counter += 1;
+    }
+}

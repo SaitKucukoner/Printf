@@ -6,5 +6,6 @@
 
 void ft_putchar(char c , int *counter);
 void ft_putstr(char *str, int *counter);
+void ft_putnbr(int number, int *counter);
 int ft_printf(const char *, ...);
 #endif

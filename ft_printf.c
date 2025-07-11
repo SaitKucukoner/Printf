@@ -3,11 +3,9 @@
 static void ft_format_conversion(const char *format, int *counter, va_list args)
 {
     if (*format == 'c')
-        ft_putchar(va_arg(args,int),counter); // %c Prints a single character.
+        ft_putchar(va_arg(args, int), counter); // %c Prints a single character.
     else if (*format == 's')
-    {
-        // %s Prints a string (as defined by the common C convention).
-    }
+        ft_putstr(va_arg(args, char *), counter); // %s Prints a string (as defined by the common C convention).
     else if (*format == 'p')
     {
         /* %p The void * pointer argument has to be printed in hexadecimal format. */
@@ -37,7 +35,7 @@ static void ft_format_conversion(const char *format, int *counter, va_list args)
         /* %% Prints a percent sign */
     }
 }
-    #include <stdio.h>
+#include <stdio.h>
 
 int ft_printf(const char *format, ...)
 {
@@ -53,10 +51,9 @@ int ft_printf(const char *format, ...)
     {
         if (format[i] == '%')
         {
-            ft_format_conversion(&format[i+1], &counter,args);
+            ft_format_conversion(&format[i + 1], &counter, args);
         }
         i++;
     }
-    printf("\n%d\n",counter);
-
+    printf("\n%d\n", counter);
 }

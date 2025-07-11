@@ -2,6 +2,5 @@
 
 int main()
 {
-    ft_printf("\n%c" , 'a');
-
+    ft_printf("%s" , "sait");
 }

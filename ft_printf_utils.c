@@ -33,15 +33,20 @@ void ft_putnbr(int number, int *counter)
         *counter += 1;
         ft_putnbr(-number, counter);
     }
-    else if (number > 9)
-    {
-        ft_putnbr((number / 10), counter); // 155 15  155
-        ft_putnbr((number % 10), counter);
-    }
     else
     {
-        result = number + '0';
-        write(1, &result, 1);
-        *counter += 1;
+        if (number > 9)
+            ft_putnbr((number / 10), counter);
+        result = (number % 10) + '0';
+        *counter += write(1, &result, 1);
     }
+}
+void ft_putunbr(unsigned int number, int *counter)
+{
+    char result;
+
+    if (number > 9)
+        ft_putunbr((number / 10), counter);
+    result = (number % 10) + '0';
+    *counter += write(1, &result, 1);
 }

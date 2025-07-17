@@ -11,10 +11,14 @@ void ft_putstr(char *str, int *counter)
     int i;
 
     i = 0;
+    if (!str)
+    {
+        *counter += write(1, "(null)", 6);
+        return;
+    }
     while (str[i])
     {
-        write(1, &str[i], 1);
-        *counter += 1;
+        *counter += write(1, &str[i], 1);
         i++;
     }
 }
@@ -48,5 +52,32 @@ void ft_putunbr(unsigned int number, int *counter)
     if (number > 9)
         ft_putunbr((number / 10), counter);
     result = (number % 10) + '0';
+    *counter += write(1, &result, 1);
+}
+
+void ft_puthex_p(unsigned long number, int *counter)
+{
+    char result;
+    char *hexbase;
+
+    hexbase = "0123456789abcdef";
+    if (number >= 16)
+        ft_puthex_p((number / 16), counter);
+    result = hexbase[number % 16];
+    *counter += write(1, &result, 1);
+}
+
+void ft_puthex(char format, unsigned int number, int *counter)
+{
+    char result;
+    char *hexbase;
+
+    if (format == 'X')
+        hexbase = "0123456789ABCDEF";
+    else
+        hexbase = "0123456789abcdef";
+    if (number >= 16)
+        ft_puthex(format, (number / 16), counter);
+    result = hexbase[number % 16];
     *counter += write(1, &result, 1);
 }

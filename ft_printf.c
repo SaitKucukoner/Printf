@@ -9,18 +9,16 @@ static void ft_format_conversion(const char *format, int *counter, va_list args)
     else if (*format == 'd' || *format == 'i')
         ft_putnbr(va_arg(args, int), counter); /* %d Prints a decimal (base 10) number. */ /// /* %i Prints an integer in base 10. */
     else if (*format == 'u')
-        ft_putunbr(va_arg(args, int), counter); /* %u Prints an unsigned decimal (base 10) number. */
+        ft_putunbr(va_arg(args, unsigned int), counter); /* %u Prints an unsigned decimal (base 10) number. */
     else if (*format == 'p')
     {
-        /* %p The void * pointer argument has to be printed in hexadecimal format. */
+        void *ptr = va_arg(args, void *);
+        ft_putstr("0x", counter);
+        ft_puthex_p((unsigned long)ptr, counter); /* %p The void * pointer argument has to be printed in hexadecimal format. */
     }
-    else if (*format == 'x' || *format == "X")
-    {
-        /* %x Prints a number in hexadecimal (base 16) lowercase || uppercase format . */
-    }
+    else if (*format == 'x' || *format == 'X')
+        ft_puthex(*format, va_arg(args, unsigned int), counter); /* %x Prints a number in hexadecimal (base 16) lowercase || uppercase format . */
 }
-#include <stdio.h>
-
 int ft_printf(const char *format, ...)
 {
     int counter;
@@ -45,5 +43,5 @@ int ft_printf(const char *format, ...)
         i++;
     }
     va_end(args);
-    printf("\n%d\n", counter);
+    return (counter);
 }

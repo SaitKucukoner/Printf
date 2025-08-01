@@ -6,7 +6,7 @@
 /*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:55:55 by skucukon          #+#    #+#             */
-/*   Updated: 2025/07/30 20:05:04 by skucukon         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:13:21 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	ft_putstr(char *str, int *counter)
 
 void	ft_puthex_p(unsigned long number, int *counter)
 {
-	char			*hexbase;
-
-	hexbase = "0123456789abcdef";
 	if (number == 0)
 	{
 		ft_putstr("(nil)", counter);

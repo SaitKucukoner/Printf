@@ -2,13 +2,13 @@
 
 This project is a recreation of the standard C library function printf(). The goal is to implement a simplified version of printf that handles a limited set of format specifiers. This exercise is crucial for understanding how variadic functions work in C (functions that accept a variable number of arguments).
 
---
+---
 
 ## Features
 
 The ft_printf function handles the following standard format conversions:
 
---
+---
 
 ### Conversion	Description	Example
 
@@ -22,4 +22,4 @@ The ft_printf function handles the following standard format conversions:
 %X	Prints an integer in uppercase hexadecimal format.	ft_printf("%X", 255)
 %%	Prints a literal percent sign.	ft_printf("%%")
 
---
+
